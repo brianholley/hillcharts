@@ -1,0 +1,61 @@
+{
+    "manifestVersion": 1,
+    "id": "hillcharts",
+    "publisher": "BrianHolley",
+    "version": "1.0.0.5",
+    "name": "Hillcharts",
+    "description": "Hillcharts project charting package",
+    "public": false,
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "hillcharts-hub",
+            "type": "ms.vss-web.hub",
+            "targets": [
+                "ms.vss-work-web.work-hub-group"
+            ],
+            "properties": {
+                "name": "Hillcharts",
+                "uri": "hub.html"
+            }
+        },
+        {
+            "id": "hillcharts-item-menu-action",
+            "type": "ms.vss-web.action",
+            "description": "View hillchart for backlog item",
+            "targets": [
+                "ms.vss-work-web.backlog-item-menu"
+            ],
+            "properties": {
+                "text": "Hillchart",
+                "title": "View Hillchart",
+                "icon": "images/icon.png",
+                "groupId": "actions",
+                "uri": "action.html"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "hub.html",
+            "addressable": true
+        },
+        {
+            "path": "css",
+            "addressable": true
+        },
+        {
+            "path": "js",
+            "addressable": true
+        },
+        {
+            "path": "node_modules/vss-web-extension-sdk/lib",
+            "addressable": true,
+            "packagePath": "lib"
+        }
+    ]
+}

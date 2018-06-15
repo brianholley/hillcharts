@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Backlog item action</title>
+    <script src="sdk/scripts/VSS.SDK.js"></script>
+    <script>
+        VSS.init();
+
+        // Use an IIFE to create an object that satisfies the IContributedMenuSource contract
+        // Menu action sample code: https://docs.microsoft.com/en-us/vsts/extend/develop/add-action?view=vsts
+        var menuContributionHandler = (function () {
+            "use strict";
+            return {
+                // This is a callback that gets invoked when a user clicks the newly contributed menu item
+                // The actionContext parameter contains context data surrounding the circumstances of this
+                // action getting invoked.
+                execute: function (actionContext) {
+                    alert("Hello, world");
+                }
+            };
+        }());
+
+        // Associate the menuContributionHandler object with the "myAction" menu contribution from the manifest.
+        VSS.register("hillcharts-item-menu-action", menuContributionHandler);
+    </script>
+</head>
+<body>
+    <div>Menu action placeholder</div>
+</body>
+</html>
