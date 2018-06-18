@@ -1,3 +1,6 @@
+# Visual Studio Extension
+*.vsix
+
 # Logs
 logs
 *.log
