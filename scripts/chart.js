@@ -42,7 +42,7 @@ function renderChart(canvas, width, height) {
     ctx.lineTo(w2,height-1)
     ctx.stroke()
 
-    for (var p in testprojects) {
+    for (var p of testprojects) {
         renderBacklogItem(canvas, p, 30, width, height)
     }
 }
@@ -69,12 +69,15 @@ function renderBacklogItem(canvas, item, width, canvasWidth, canvasHeight) {
     var ctx = canvas.getContext('2d')
 
     var pts = getCurvePoints(canvasWidth, canvasHeight)
-    var center = pointOnHillCurve(item.hill_progres, pts)
+    var center = pointOnHillCurve(item.hill_progress, pts)
+
+    console.log(`Project ${item.name}: ${item.hill_progress} -> ${center.x},${center.y}` )
 
     ctx.beginPath();
     ctx.arc(center.x, center.y, width/2, 0, 2 * Math.PI, false);
     ctx.fillStyle = 'white';
     ctx.fill();
+    ctx.setLineDash([]);
     ctx.lineWidth = 3;
     ctx.strokeStyle = item.color;
     ctx.stroke();
