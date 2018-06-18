@@ -12,25 +12,25 @@ var testprojects = [
     }
 ]
 
-function getCurvePoints(width, height) {
+function getCurvePoints(width, height, margin) {
     var w2 = width / 2
     return [
-        { x: 1, y: height-1 },
-        { x: w2-100, y: height-1 },
-        { x: w2-150, y: 1 },
-        { x: w2, y: 1 },
-        { x: w2, y: 1 },
-        { x: w2+150, y: 1 },
-        { x: w2+100, y: height-1 },
-        { x: width-1, y: height-1 }
+        { x: margin, y: height-margin },
+        { x: w2-100, y: height-margin },
+        { x: w2-150, y: margin },
+        { x: w2, y: margin },
+        { x: w2, y: margin },
+        { x: w2+150, y: margin },
+        { x: w2+100, y: height-margin },
+        { x: width-margin, y: height-margin }
     ]
 }
 
-function renderChart(canvas, width, height) {
+function renderChart(canvas, width, height, margin) {
     var ctx = canvas.getContext('2d')
     
     var w2 = width / 2
-    var pts = getCurvePoints(width, height)
+    var pts = getCurvePoints(width, height, margin)
     ctx.beginPath()
     ctx.moveTo(pts[0].x, pts[0].y)
     ctx.bezierCurveTo(pts[1].x, pts[1].y, pts[2].x, pts[2].y, pts[3].x, pts[3].y)
@@ -43,7 +43,7 @@ function renderChart(canvas, width, height) {
     ctx.stroke()
 
     for (var p of testprojects) {
-        renderBacklogItem(canvas, p, 30, width, height)
+        renderBacklogItem(canvas, p, 24, width, height, margin)
     }
 }
 
@@ -65,10 +65,10 @@ function pointOnHillCurve(value, pts) {
 function renderLegend() {
 }
 
-function renderBacklogItem(canvas, item, width, canvasWidth, canvasHeight) {
+function renderBacklogItem(canvas, item, width, canvasWidth, canvasHeight, canvasMargin) {
     var ctx = canvas.getContext('2d')
 
-    var pts = getCurvePoints(canvasWidth, canvasHeight)
+    var pts = getCurvePoints(canvasWidth, canvasHeight, canvasMargin)
     var center = pointOnHillCurve(item.hill_progress, pts)
 
     console.log(`Project ${item.name}: ${item.hill_progress} -> ${center.x},${center.y}` )
