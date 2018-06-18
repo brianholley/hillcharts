@@ -41,6 +41,10 @@ function renderChart(canvas, width, height) {
     ctx.moveTo(w2,1)
     ctx.lineTo(w2,height-1)
     ctx.stroke()
+
+    for (var p in testprojects) {
+        renderBacklogItem(canvas, p, 30, width, height)
+    }
 }
 
 function pointOnHillCurve(value, pts) {
@@ -64,13 +68,14 @@ function renderLegend() {
 function renderBacklogItem(canvas, item, width, canvasWidth, canvasHeight) {
     var ctx = canvas.getContext('2d')
 
-    var center = pointOnHillCurve()
+    var pts = getCurvePoints(canvasWidth, canvasHeight)
+    var center = pointOnHillCurve(item.hill_progres, pts)
 
-    context.beginPath();
-    context.arc(center.x, center.y, width/2, 0, 2 * Math.PI, false);
-    context.fillStyle = 'white';
-    context.fill();
-    context.lineWidth = 3;
-    context.strokeStyle = item.color;
-    context.stroke();
+    ctx.beginPath();
+    ctx.arc(center.x, center.y, width/2, 0, 2 * Math.PI, false);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = item.color;
+    ctx.stroke();
 }
