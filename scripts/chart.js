@@ -27,6 +27,8 @@ function getCurvePoints(width, height, margin) {
 }
 
 function renderChart(canvas, width, height, margin) {
+    console.log(`renderChart ${width}x${height}, margin=${margin}`)
+
     var ctx = canvas.getContext('2d')
     
     var w2 = width / 2
@@ -45,6 +47,7 @@ function renderChart(canvas, width, height, margin) {
     for (var p of testprojects) {
         renderBacklogItem(canvas, p, 24, width, height, margin)
     }
+    console.log(`renderChart complete`)
 }
 
 function pointOnHillCurve(value, pts) {
@@ -71,7 +74,7 @@ function renderBacklogItem(canvas, item, width, canvasWidth, canvasHeight, canva
     var pts = getCurvePoints(canvasWidth, canvasHeight, canvasMargin)
     var center = pointOnHillCurve(item.hill_progress, pts)
 
-    console.log(`Project ${item.name}: ${item.hill_progress} -> ${center.x},${center.y}` )
+    console.log(`Project ${item.name}: ${item.hill_progress} -> ${center.x},${center.y}`)
 
     ctx.beginPath();
     ctx.arc(center.x, center.y, width/2, 0, 2 * Math.PI, false);
