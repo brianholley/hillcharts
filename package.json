@@ -4,11 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean:vsix": "rimraf *.vsix",
+    "clean": "npm run clean:vsix && rimraf dist",
+    "dev": "webpack-dev-server --hot --progress --colors --https --port 3000 --config webpack.dev.config.js",
+    "package:dev": "node ./build/pack.js --dev",
+    "publish:dev": "npm run clean:vsix && npm run package:dev && node ./build/pack.js --release",
+    "build:release": "npm run clean && mkdir dist && webpack --progress --colors --output-path ./dist -p",
+    "package:release": "npm run build:release && node ./build/pack.js --release",
+    "copy:libs": "cpx node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js libs && cpx node_modules/q/q.js libs",
+    "postinstall": "npm run copy:libs"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1",
+    "cpx": "^1.5.0",
+    "rimraf": "^2.6.2",
+    "ts-loader": "^4.4.1",
+    "typescript": "2.3.4",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  },
   "dependencies": {
     "vss-web-extension-sdk": "^5.134.0"
   }
