@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "target": "es5",
+        "sourceMap": true,
+        "moduleResolution": "node"
+    },
+    "include": [
+        "scripts/chart.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "typings"
+    ]
+}

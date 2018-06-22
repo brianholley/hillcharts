@@ -5,9 +5,10 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     target: 'web',
     mode: 'development',
-    entry: './scripts/chart.js',
+    entry: './scripts/chart.ts',
     output: {
-        filename: 'scripts/[name].js'
+        filename: '[name].js',
+        path: __dirname + '/scripts'
     },
     module: {
         rules: [
