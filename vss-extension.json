@@ -37,7 +37,7 @@
                 "groupId": "actions",
                 "uri": "action.html"
             }
-        }
+                 }
     ],
     "files": [
         {
@@ -45,7 +45,15 @@
             "addressable": true
         },
         {
+            "path": "action.html",
+            "addressable": true
+        },
+        {
             "path": "css",
+            "addressable": true
+        },
+        {
+            "path": "img",
             "addressable": true
         },
         {
